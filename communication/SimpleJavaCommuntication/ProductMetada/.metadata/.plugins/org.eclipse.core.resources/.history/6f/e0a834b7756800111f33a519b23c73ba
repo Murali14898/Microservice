@@ -1,0 +1,5 @@
+package com.microservice.product.ProductMicroservice.models;
+
+public class Product {
+
+}

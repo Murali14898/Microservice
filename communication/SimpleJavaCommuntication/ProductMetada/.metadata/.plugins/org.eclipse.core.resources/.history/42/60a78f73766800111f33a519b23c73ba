@@ -1,0 +1,8 @@
+package com.microservice.product.ProductMicroservice.services;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductService {
+	
+}

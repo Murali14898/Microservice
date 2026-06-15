@@ -1,0 +1,11 @@
+package com.microservice.product.ProductMicroservice.models;
+
+public class Product {
+	private String productId;
+	
+	private String name;
+	
+	private double price;
+	
+	
+}

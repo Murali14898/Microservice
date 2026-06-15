@@ -1,0 +1,17 @@
+package com.microservice.product.ProductMicroservice.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController("/products")
+public class ProductController {
+	
+	@Auto
+	
+	@GetMapping("/id")
+	public ResponseEntity<String> getProduct(@PathVariable String id){
+		
+	}
+}

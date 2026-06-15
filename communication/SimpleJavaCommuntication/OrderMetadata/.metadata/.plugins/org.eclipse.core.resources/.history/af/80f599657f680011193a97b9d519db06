@@ -1,0 +1,47 @@
+package com.microservice.order.OrderMicroservice.services;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrderService {
+
+	public ResponseEntity<String> getProduct(String id) {
+		HttpURLConnection httpURLConnection = null;
+		StringBuilder response = new StringBuilder();
+		try {
+			String uri = "http://localhost:8082/products/" + id;
+			URL url = new URL(uri);
+			httpURLConnection = (HttpURLConnection) url.openConnection();
+			httpURLConnection.setRequestMethod("GET");
+			httpURLConnection.setRequestProperty("Accept", "application/json");
+			httpURLConnection.setConnectTimeout(1000);
+			httpURLConnection.setReadTimeout(5000);
+			int statusCode = httpURLConnection.getResponseCode();
+			System.out.println(statusCode);
+			BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+			
+			String responseLine;
+			while((responseLine = in.readLine()) != null) {
+				response .append(responseLine);
+			}
+			in.close();
+			System.out.println("Response : "+response.toString());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+
+		}
+		finally {
+			if(httpURLConnection != null) {
+				httpURLConnection.disconnect();
+			}
+		}
+		return ResponseEntity.ok(response.toString());
+	}
+
+}
